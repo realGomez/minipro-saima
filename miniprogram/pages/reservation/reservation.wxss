@@ -1,0 +1,195 @@
+/**index.wxss**/
+
+page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+.home_banner{
+  width: 100%;
+}
+.main-image{
+  height: 100%;
+}
+
+.section-reserve{
+  width: 100%;
+}
+
+.reserve-title{
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+}
+
+/* date */
+.dateItemsContainer{
+  overflow: auto;
+    width: 100%;
+    background: #efefef;
+}
+
+.dateItems{
+  width: fit-content;
+  white-space: nowrap;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+
+.dateItem{
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  text-align: center;
+  /* width: 100rpx; */
+  border-left: 1px solid #fffdfd;
+
+}
+
+.dateItem.selected{
+  background-color: #dadada;
+}
+
+.dateItem:first-child{
+  border-left: 0;
+}
+
+
+.week{
+  font-size:30rpx;
+}
+.date{
+  font-size:26rpx;
+}
+
+/* date */
+
+
+/* business hour */
+
+.optionLayout{
+  display: grid;
+  grid-template-columns: 120rpx auto;
+  margin-top: 20rpx;
+}
+
+.timeIntervalContainer{
+  margin-top: 28rpx;
+}
+
+.businessHoursContainer{
+  overflow: auto;
+    width: 100%;
+}
+
+.businessHoursItems{
+  width: fit-content;
+  white-space: nowrap;
+  display: grid;
+    grid-auto-flow: column;
+}
+
+.timeIntervalItems{
+  width: fit-content;
+  white-space: nowrap;
+  display: grid;
+  grid-auto-flow: row;
+}
+
+
+.timeInterval{
+  text-align: center;
+  border-radius: 4rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 120rpx;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 26rpx;
+}
+.timeInterval::after{
+  display: block;
+  content: '';
+  width: 10rpx;
+  height: 2rpx;
+  background-color: #000000;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.horseName{
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  box-sizing: border-box;
+}
+.timeIntervalItem{
+  display: inline-block;
+    /* padding: 10rpx 20rpx; */
+    text-align: center;
+    background-color: #00ad65;
+    border-bottom: 1px solid #ffff;
+    border-left: 1px solid #ffff;
+    border-radius: 10rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    width: 140rpx;
+    box-sizing: border-box;
+    font-size: 32rpx;
+}
+
+.timeIntervalItem.available{
+  background-color: #00ad65;
+}
+
+.timeIntervalItem.disavailable{
+  background-color: #dbdbdb;
+}
+
+.timeIntervalItem.selected{
+  background-color: #4751db;
+}
+
+/* status description */
+
+.status-description{
+  border-top:1px solid #efefef;
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+}
+
+.status-items{
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-around;
+}
+
+.status-item{
+  width: 140rpx;
+}
+
+.status-color{
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 140rpx;
+  border-radius: 10rpx;
+}
+
+.status-text{
+  font-size: 26rpx;
+}
+
+.item-saleable .status-color{
+  background-color: #00ad65;
+}
+
+.item-sold .status-color{
+  background-color: #dbdbdb;
+}
+
+.item-selected .status-color{
+  background-color: #4751db;
+}
