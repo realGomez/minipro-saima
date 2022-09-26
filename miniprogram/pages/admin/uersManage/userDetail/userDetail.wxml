@@ -1,0 +1,45 @@
+<!--pages/admin/uersManage/userDetail/userDetail.wxml-->
+<view class="container">
+
+  <view class="form-container">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+
+      <view class="field">
+          <view class="label">状态</view>
+          <view class="control"  >
+            <switch type="switch"  name="status" checked="{{status}}" />
+          </view>
+      </view>
+
+      <view class="field">
+          <view class="label">头像</view>
+          <view class="control"  >
+            <view class="avatar" style="background-image: url({{avatarUrl}})"></view>
+          </view>
+      </view>
+
+    
+
+      <view class="field">
+          <view class="label">昵称</view>
+          <view class="control"  >
+          <text>{{nickName}}</text>  
+          </view>
+      </view>
+
+      <view class="field">
+          <view class="label">编号</view>
+          <view class="control"  >
+            <text>{{_id}}</text>  
+          </view>
+      </view>
+
+
+      <view class="actions-toolbar">
+        <button style="margin: 30rpx 0" type="primary" formType="submit" size="mini">保存</button>
+        <button style="margin: 30rpx 0" wx:if="{{!productId}}" type="secondery" size="mini" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+
+</view>

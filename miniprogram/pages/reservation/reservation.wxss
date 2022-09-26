@@ -138,7 +138,8 @@ page {
     line-height: 60rpx;
     width: 140rpx;
     box-sizing: border-box;
-    font-size: 32rpx;
+    font-size: 26rpx;
+    color: #fff;
 }
 
 .timeIntervalItem.available{
@@ -192,4 +193,22 @@ page {
 
 .item-selected .status-color{
   background-color: #4751db;
+}
+
+
+/* place order */
+
+.play-order{
+  border-top: 1px solid #efefef;
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-around;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.play-order .total{
+  color: #4751db;
 }

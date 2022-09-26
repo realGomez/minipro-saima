@@ -1,0 +1,13 @@
+
+.dashboard-page{
+  padding: 0 20rpx;
+}
+
+.user-navigation navigator{
+  border-top: 1rpx solid #EAEAEA;
+  padding: 16rpx 0;
+  font-size: 24rpx;
+}
+.user-navigation navigator:last-child{
+  border-bottom: 1rpx solid #EAEAEA;
+}

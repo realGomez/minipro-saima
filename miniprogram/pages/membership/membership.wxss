@@ -1,0 +1,4 @@
+/* pages/membership/membership.wxss */
+.container{
+  padding: 40rpx 20rpx;
+}

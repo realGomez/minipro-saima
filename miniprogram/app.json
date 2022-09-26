@@ -1,0 +1,74 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/im/im",
+    "pages/im/room/room",
+    "pages/reservation/reservation",
+    "pages/myAccount/myAccount",
+    "pages/orderHistory/orderHistory",
+    "pages/orderHistory/orderDetail/orderDetail",
+    "pages/membership/membership",
+    "pages/login/login"
+  ],
+  "subpackages": [
+    {
+      "root": "pages/admin",
+      "pages": [
+        "dashboard/dashboard",
+        "horseManage/horseManage",
+        "horseManage/horseDetail/horseDetail",
+        "orderManage/orderManage",
+        "orderManage/orderDetail/orderDetail",
+        "uersManage/uersManage",
+        "uersManage/userDetail/userDetail"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "白马井赛马",
+    "navigationBarTextStyle": "black"
+    
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#000",
+    "selectedColor": "#e4a679",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath":"./static/shouyeshouye.png",
+        "selectedIconPath":"./static/shouyeshouye_active.png"
+      },
+      {
+        "pagePath": "pages/reservation/reservation",
+        "text": "预约",
+        "iconPath":"./static/yuyuehuodong.png",
+        "selectedIconPath":"./static/yuyuehuodong_active.png"
+      },
+      {
+        "pagePath": "pages/orderHistory/orderHistory",
+        "text": "订单",
+        "iconPath":"./static/dingdan.png",
+        "selectedIconPath":"./static/dingdan_active.png"
+      },
+      {
+        "pagePath": "pages/myAccount/myAccount",
+        "text": "账户",
+        "iconPath":"./static/guanbi.png",
+        "selectedIconPath":"./static/guanbi_active.png"
+      }
+    ]
+  },
+  "plugins": {
+    "wxPano": {
+      "version": "2.1.4",
+      "provider": "wx386c038238531f87"
+    }
+  }
+}

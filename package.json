@@ -1,0 +1,23 @@
+{
+  "name": "saima",
+  "version": "1.0.0",
+  "description": "minipro-saima",
+  "main": "index.js",
+  "dependencies": {
+    "photo-sphere-viewer": "^4.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realGomez/minipro-saima.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/realGomez/minipro-saima/issues"
+  },
+  "homepage": "https://github.com/realGomez/minipro-saima#readme"
+}

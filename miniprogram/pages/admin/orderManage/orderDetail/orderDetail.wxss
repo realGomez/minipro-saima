@@ -1,0 +1,38 @@
+/* pages/admin/orderManage/orderDetail/orderDetail.wxss */
+
+.container{
+  padding: 40rpx 20rpx 0;
+}
+.option{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 120rpx auto;
+  padding: 16rpx 0;
+  font-size: 24rpx;
+  border-top: 1rpx solid #EAEAEA;
+}
+
+.option:last-child {
+  border-bottom: 1rpx solid #EAEAEA;
+}
+
+.option .value{
+   font-weight: 700;
+}
+
+
+
+.item{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.5fr 1fr 0.5fr ;
+  font-size: 28rpx;
+  align-items: center;
+  border-top: 1rpx solid #EAEAEA;
+  padding: 16rpx 0;
+  font-size: 24rpx;
+}
+
+.item:last-child{
+  border-bottom: 1rpx solid #EAEAEA;
+}

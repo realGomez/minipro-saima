@@ -1,0 +1,144 @@
+/**app.wxss**/
+.container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  box-sizing: border-box;
+} 
+
+button {
+  background: initial;
+}
+
+button:focus{
+  outline: 0;
+}
+
+button::after{
+  border: none;
+}
+
+
+page {
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: #1e1e1e;
+  font-weight: 300;
+  font-size: 24rpx;
+}
+
+.h1{
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.h2{
+  font-size: 30rpx;
+font-weight: 700;
+margin-bottom: 20rpx;
+
+}
+
+view button[size='mini'] {
+    border-radius: 40rpx;
+    font-size: 26rpx;
+    padding: 0;
+    min-width: 100rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 20rpx;
+    display: inline-grid;
+    grid-auto-flow: column;
+    align-items: center;
+    grid-gap: 6rpx;
+}
+
+
+view button[type="primary"]{
+  background-color: #4751db;
+  color: #fff;
+
+}
+
+view button[size="default"]{
+  width: 100%;
+}
+  
+
+view button[type="pick"]{
+  background-color: #4751db;
+  color: #fff;
+  border-radius:0 ;
+}
+/* view navigator.next-link:after{
+  display: block;
+    content: '';
+    width: 40rpx;
+    height: 40rpx;
+    border: 2rpx solid #888585;
+    border-radius: 0;
+} */
+
+
+view navigator.next-link{
+  /* font-size: 26rpx;
+  padding: 0;
+  min-width: 100rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx; */
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  /* grid-gap: 6rpx; */
+}
+
+.icon-next-link{
+  width: 14rpx;
+  height: 14rpx;
+  border: 2rpx solid #888585;
+  border-radius: 0;
+  border-left: 0;
+  border-top: 0;
+  transform: rotate(-45deg);
+}
+
+
+/* form */
+
+.field{
+  display: grid;
+  grid-template-columns:  auto 1fr;
+  align-items: center;
+  border-top: 1rpx solid #EAEAEA;
+  padding: 16rpx 0;
+  grid-gap: 10rpx;
+}
+
+.field:last-child{
+  border-bottom: 1rpx solid #EAEAEA;
+}
+
+.field input{
+  padding-left: 10rpx;
+}
+
+.field .label{
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.field  .weui-cell.weui-check__label{
+  display: grid;
+    grid-auto-flow: column;
+    /* grid-template-columns: auto 1fr; */
+    align-items: center;
+}
+
+.field radio-group{
+  display: grid;
+  grid-auto-flow: column;
+}

@@ -1,0 +1,10 @@
+/* pages/login/login.wxss */
+
+
+.container{
+  padding: 20rpx;
+}
+
+view button[type="primary"] {
+  margin-top: 40rpx;
+}

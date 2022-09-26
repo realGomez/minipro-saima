@@ -1,0 +1,93 @@
+<!--pages/admin/orderManage/orderDetail/orderDetail.wxml-->
+<wxs src="../../../../wxs/format.wxs" module="format" />
+
+<view class="container orderDetail-page">
+
+  <!-- <view class="orderDetail">
+    <view class="option">
+       <view  class="value">订单号</view><view class="label">{{order_number}}</view> 
+    </view>
+    <view class="option">
+      <view class="value">预约时间</view><view class="label">{{order_year}}-{{format.getTimeFormat(order_month)}}-{{format.getTimeFormat(order_date)}} {{format.getTimeFormat(order_time_interval)}}:00</view> 
+    </view>
+    <view class="option">
+      <view class="value">场次</view><view class="label">{{horse_number}}</view> 
+    </view>
+    <view class="option">
+      <view class="value">场次</view><view class="label">{{horse_number}}</view> 
+    </view>
+    <view class="option">
+      <view class="value">状态</view><view class="label">{{status}}</view>
+    </view>
+  </view> -->
+
+  <view class="form-container">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+
+      <view class="field">
+          <view class="label">订单号</view>
+          <view class="control"  >
+            <view class="value">#{{order_number}}</view> 
+          </view>
+      </view>
+
+      <view class="field">
+          <view class="label">微信昵称</view>
+          <view class="control"  >
+            <view class="value">{{nickName}}</view> 
+          </view>
+      </view>
+
+      <view class="field">
+          <view class="label">下单时间</view>
+          <view class="control"  >
+            <view class="value">{{place_order_time}}</view> 
+          </view>
+      </view>
+
+      <view class="items">
+        <view  class="item">
+          <view>场次编号</view> <view>预约时间</view>
+        </view>
+        <view class="item" wx:for="{{businessHours}}"   wx:key="businessHoursId" data-timeInterval="{{item.businessHoursId}}"  >
+          <view> {{item.horseNumber}} </view>
+          <view>{{order_year}}-{{format.getTimeFormat(order_month)}}-{{format.getTimeFormat(order_date)}}  {{item.timeIntervalLabel}} </view>
+        </view>
+      </view>
+
+      <view class="field">
+          <view class="label">总计</view>
+          <view class="control"  >
+            <view class="value">￥{{order_total}}</view> 
+          </view>
+      </view>
+
+      <view class="field">
+          <view class="label">状态</view>
+          <view class="control"  >
+            <!-- <view class="value">{{status}}</view>  -->
+            <view class="weui-cells weui-cells_after-title">
+              <radio-group bindchange="radioChange">
+                <label class="weui-cell weui-check__label" wx:for="{{statusList}}" wx:key="status_code">
+
+                  <view class="weui-cell__hd">
+                    <radio value="{{item.status_code}}" checked="{{item.status_code == status}}"/>
+                  </view>
+                  <view class="weui-cell__bd">{{item.status_label}}</view>
+                </label>
+              </radio-group>
+            </view>
+          </view>
+      </view>
+
+      <view class="actions-toolbar">
+        <button style="margin: 30rpx 0" type="primary" formType="submit" size="mini">保存</button>
+        <button style="margin: 30rpx 0" wx:if="{{!productId}}" type="secondery" size="mini" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+
+</view>
+
+
+

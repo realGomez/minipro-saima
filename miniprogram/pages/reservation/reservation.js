@@ -1,12 +1,8 @@
 //index.js
-import * as THREE from '../../libs/three.weapp.js';
-import { OrbitControls } from '../../jsm/controls/OrbitControls';
-import { RGBELoader } from '../../jsm/loaders/RGBELoader.js';
-
-
-// jsm/loaders/OrbitControls
 const app = getApp();
 const db = wx.cloud.database();
+const _ = db.command;
+
 Page({
   data: {
      bannerCollection:[],
@@ -20,6 +16,7 @@ Page({
      availeblePickedDate:[],
      availebleHorses:[],
      selectedBusinessHours:[],
+     selectedBusinessHoursAndHorse:[],
      selectedHorseNumber:'',
      orderTotal:0
   },
@@ -83,8 +80,6 @@ Page({
     }
 
 
-    console.log('availeblePickedDate-ww-',availeblePickedDate);
-
 
     this.setData({
       availeblePickedDate:availeblePickedDate,
@@ -102,6 +97,13 @@ Page({
 
   },
 
+  onShow:function(){
+      if(!app.globalData.userInfo.hasUserInfo ){
+        wx.navigateTo({
+          url: '../login/login',
+        })
+      }
+  },
 
   getAvailableDay:function(pickMonth){
 
@@ -175,12 +177,6 @@ getweekDay:function(pickYear,pickMonth,pickDate){
 },
 
 pickDateAction:function(event){
-    // const {pickYear,pickMonth,selectedDay} = PickedDate;
-
-    
-    // console.log('pickYear',event.currentTarget.dataset.pickYear);
-    // console.log('pickMonth',event.currentTarget.dataset.pickMonth);
-    // console.log('selectedDay',event.currentTarget.dataset.pickDate);
 
     const pickYear = event.currentTarget.dataset.pickYear;
     const pickMonth = event.currentTarget.dataset.pickMonth;
@@ -194,6 +190,7 @@ pickDateAction:function(event){
       selectedDay:pickDate,
       selectedHorseNumber:'',
       selectedBusinessHours:[],
+      selectedBusinessHoursAndHorse:[],
       orderTotal:0
     })
 
@@ -202,7 +199,7 @@ pickDateAction:function(event){
   
 initOptions:async function(){
 
-  const _ = db.command
+
 
   const templateDate = new Date();
 
@@ -230,9 +227,7 @@ initOptions:async function(){
 
   const businessHours = businessHoursData.data;
 
-  // console.log('order',orderHistory);
-  // console.log('horse',horse);
-  // console.log('businessHours',businessHours);
+  
 
   const availebleHorses = [];
 
@@ -246,16 +241,17 @@ initOptions:async function(){
       const {value,label,status,price,isEnd,_id} = businessHour;
 
       const matchItem =   orderHistory.find(order=>{
-          return order.order_time_interval == value && horse_number == order.horse_number && order.status != 'cancelled';
+          return order.businessHoursAndHorse.indexOf(horse_number+'_'+_id) !=-1  && order.status != 'cancelled';
        })
 
        if(!isEnd){
           businessHoursForThisHorse.push({
             timeInterval:value,
+            timeIntervalLabel:label,
             price:price,
             businessHoursId:_id,
             horse_number:horse_number,
-            status:matchItem ||!status|| (this.data.selectedMonth==currentMonth && this.data.selectedDay==currentDay && currentHour > value ) ? false:true
+            status:matchItem ||!status|| (this.data.selectedMonth==currentMonth && this.data.selectedDay==currentDay && currentHour >= value ) ? false:true
         })
        }
       
@@ -270,14 +266,14 @@ initOptions:async function(){
      })
 
 
-    //  console.log('availebleHorses',availebleHorses);
 
      this.setData({
       availebleHorses:availebleHorses,
-      businessHours:businessHours
+      businessHours:businessHours,
+      selectedBusinessHours:[],
+      selectedBusinessHoursAndHorse:[]
      })
 
-     console.log('this.data----',this.data);
   })
 
 },
@@ -286,6 +282,7 @@ initOptions:async function(){
 pickBusinessHourAction:function(event){
 
   const timeInterval = event.currentTarget.dataset.timeInterval;
+  const timeIntervalLabel = event.currentTarget.dataset.timeIntervalLabel;
   const horseNumber = event.currentTarget.dataset.horseNumber;
   const businessHoursId = event.currentTarget.dataset.businessHoursId;
   const status = event.currentTarget.dataset.status;
@@ -298,21 +295,26 @@ pickBusinessHourAction:function(event){
   }
 
   if(status){
-    // console.log('timeInterval',timeInterval);
-    // console.log('horseNumber',horseNumber);
-    // console.log('businessHoursId',businessHoursId);
-    // console.log('status',status);
-
+   
     const arrBusinessHours = this.data.selectedBusinessHours;
+    const arrBusinessHoursAndHorse = this.data.selectedBusinessHoursAndHorse;
 
     let exist = false;
     let existIndex = -1;
-    arrBusinessHours.forEach((item,index)=>{
-        if(item.horseNumber == horseNumber&& item.businessHoursId== businessHoursId){
-          exist = true;
-          existIndex = index;
-        }
-    });
+    // arrBusinessHours.forEach((item,index)=>{
+    //     if(item.horseNumber == horseNumber&& item.businessHoursId== businessHoursId){
+    //       exist = true;
+    //       existIndex = index;
+    //     }
+    // });
+
+    arrBusinessHoursAndHorse.forEach((item,index)=>{
+      if(item == horseNumber +'_'+ businessHoursId){
+        exist = true;
+        existIndex = index;
+      }
+  });
+
 
     if(!exist){
 
@@ -326,22 +328,39 @@ pickBusinessHourAction:function(event){
         return
       }
 
+      let nextIndex ;
+      let currentPrice = 0;
+      this.data.businessHours.forEach((item,index)=>{
+        if(item._id ==  businessHoursId){
+          nextIndex = index + 1;
+          currentPrice = item.price;
+        }
+    });
+
       arrBusinessHours.push({
         horseNumber:horseNumber,
-        businessHoursId:businessHoursId
+        timeInterval:timeInterval,
+        timeIntervalLabel:timeIntervalLabel + '-' +this.data.businessHours[nextIndex]['label'],
+        businessHoursId:businessHoursId,
+        subTotal:currentPrice
       })
+
+      arrBusinessHoursAndHorse.push(
+        horseNumber +'_'+ businessHoursId
+      )
 
     }else{
       arrBusinessHours.splice(existIndex,1);
+      arrBusinessHoursAndHorse.splice(existIndex,1);
 
     }
 
     this.setData({
       selectedBusinessHours:arrBusinessHours,
-      selectedHorseNumber:horseNumber
+      selectedBusinessHoursAndHorse:arrBusinessHoursAndHorse,
+      // selectedHorseNumber:horseNumber
     })
   }
-  console.log('-this.data',this.data);
 
   this.calculateOrderTotal();
 },
@@ -363,6 +382,116 @@ calculateOrderTotal:function(){
   this.setData({
     orderTotal:total
   })
+},
+placeOrder:async function(){
+
+  const that = this;
+
+
+  const templateDate = new Date();
+
+  const pickYear = templateDate.getFullYear().toString();
+
+  const pickMonth = templateDate.getMonth()+1<10?'0' + (templateDate.getMonth()+1):(templateDate.getMonth()+1).toString();
+
+  const pickDate = templateDate.getDate()<10?'0' + templateDate.getDate():templateDate.getDate().toString();
+
+  const pickHour =  templateDate.getHours()<10?'0' + templateDate.getHours():templateDate.getHours().toString();
+
+  const pickMinutes = templateDate.getMinutes()<10?'0' + templateDate.getMinutes():templateDate.getMinutes().toString();
+
+
+  const orderRecordData = await db.collection('order_record').get();
+
+  const orderRecord = orderRecordData.data[0]['record'];
+
+  const orderData = await db.collection('order_manage').where({
+    order_year: _.eq(Number(this.data.selectedYear)),
+    order_month: _.eq(Number(this.data.selectedMonth)),
+    order_date: _.eq(Number(this.data.selectedDay)),
+  }).get();
+
+  const filterOrder = orderData.data;
+
+  const matchOrder = filterOrder.filter((order)=>{
+    const matchHoursAndHorse=   order.businessHoursAndHorse.filter((hoursAndHorse)=>{
+       return that.data.selectedBusinessHoursAndHorse.indexOf(hoursAndHorse) !=-1
+      })
+      return matchHoursAndHorse.length>0;
+  })
+
+  if(matchOrder.length>0){
+    wx.showToast({
+      title: '部分场次被抢先预定，请重新选择',
+    })
+
+
+    // this.onLoad();
+    this.initOptions();
+    return
+  }
+
+
+  const orderNumberEx = [0,0,0,0,0,0];
+
+  const alreadyLength = (orderRecord+1).toString().length
+  // orderRecord
+  orderNumberEx.length = orderNumberEx.length - alreadyLength;
+
+  db.collection('order_manage').add({
+    data: {
+      order_year:Number(that.data.selectedYear),
+      order_month:Number(that.data.selectedMonth),
+      order_date:Number(that.data.selectedDay),
+      businessHoursAndHorse:that.data.selectedBusinessHoursAndHorse,
+      businessHours:that.data.selectedBusinessHours,
+      order_number:orderNumberEx.join('')+(orderRecord+1).toString(),
+      status:'pending',
+      nickName:app.globalData.userInfo.nickName,
+      gender:app.globalData.userInfo.gender,
+      order_total:that.data.orderTotal,
+      place_order_time:pickYear+'-'+pickMonth+'-'+pickDate+' '+pickHour+':'+pickMinutes
+    },
+    success: res => {
+      that.setData({
+        _id:res._id
+      })
+      wx.showToast({
+        title: '添加成功',
+      })
+
+      db.collection('order_record').doc(orderRecordData.data[0]['_id']).update({
+        data: {
+          record:orderRecord + 1
+        },
+        success: res => {
+          wx.showToast({
+            title: '订单+1',
+          })
+        },
+        fail: err => {
+          wx.showToast({
+            title: '订单+1失败',
+          })
+        }
+      })
+
+     this.initOptions();
+
+      
+    },
+    fail: err => {
+      wx.showToast({
+        icon: 'none',
+        title: '添加失败'
+      })
+
+     this.initOptions();
+
+    }
+  })
+
+  // this.onLoad();
 }
 
 

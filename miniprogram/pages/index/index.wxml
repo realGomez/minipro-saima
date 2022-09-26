@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<wxs src="../../wxs/format.wxs" module="format" />
+<navigation-bar default-data="{{defaultData}}"></navigation-bar>
+
+<view class="container">
+ <view class="page-top">
+  <view class="page-title h1">打卡赛马场</view>
+  <view class="item-row introdution">
+    <!-- <view class="h2"> 牧场简介：</view> -->
+    <!-- <view>以马术为主题平台，提供针对培训会员、马主会员、家庭会员的马术培训、马匹管理、马术赛事以及个人家庭休闲度假和聚会等相关服务.</view> -->
+  </view>
+   <view class="exption">
+    <view class="item-row row-type-d">
+      <image style="width: 200rpx; height: 300rpx;" class="exption-item-1" mode="aspectFill" src="cloud://gmz-sili0.676d-gmz-sili0-1300700295/home/20220923230449.png"></image>
+      <image style="width: 200rpx; height: 300rpx;" class="exption-item-2" mode="aspectFill" src="cloud://gmz-sili0.676d-gmz-sili0-1300700295/home/20220923230047.png"></image>
+      <view class="text-container">以马术为主题平台，提供针对培训会员、马主会员、家庭会员的马术培训、马匹管理、马术赛事以及个人家庭休闲度假和聚会等相关服务.</view>
+    
+    </view>
+
+    <view class="item-row row-type-a">
+      <view class="text-container">马具、装备、教学、野外骑乘、组织活动、指南等</view>
+      <image style="width: 300rpx; height: 400rpx;" class="exption-item-1" mode="aspectFill" src="cloud://gmz-sili0.676d-gmz-sili0-1300700295/home/20220925120301.png"></image>
+    </view>
+      
+      <view class="item-row row-type-b">
+        <image style="width: 100%; height: 440rpx;" class="exption-item-2"  mode="aspectFill" src="cloud://gmz-sili0.676d-gmz-sili0-1300700295/home/20220923225947.png"></image>
+        <view class="text-container">推动马术运动在中国的普及和发展，马业企业技术和管理咨询服务，为马术爱好者提供马匹，并提供骑术训练课程。</view>
+      </view>
+
+      <view class="item-row row-type-c">
+        <image style="width: 300rpx; height: 400rpx;" class="exption-item-1" mode="aspectFill" src="cloud://gmz-sili0.676d-gmz-sili0-1300700295/home/20220925120408.png"></image>
+        <view class="text-container">以马术为主题平台，提供针对培训会员、马主会员、家庭会员的马术培训及个人家庭休闲度假和聚会等相关服务.</view>
+    </view>
+   </view>
+
+   <view class="item-row ">
+      <view class="address">地址：海南省儋州市白马井兰城村委会赛马场</view>
+      <view class="map-layout">
+        <map
+          style="width: 100%; height: 600rpx;" 
+          latitude="{{latitude}}"
+          longitude="{{longitude}}"
+          markers="{{markers}}"
+          scale="14"
+          >
+            <cover-view slot="callout">
+              
+            </cover-view>
+        </map>
+      </view>
+   </view>
+  
+ </view>
+  
+</view>

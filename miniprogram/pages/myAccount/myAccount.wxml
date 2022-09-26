@@ -1,0 +1,43 @@
+<!--miniprogram/pages/account/account.wxml-->
+
+
+<view class="container account-page">
+
+<view class="user-profile">
+  <button 
+      wx:if="{{hasUserInfo}}" 
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+      size="mini"
+    ></button>
+    <button
+      wx:else
+      bindtap="getUserProfile"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+      size="mini"
+    >
+  </button>
+
+  <text  wx:if="{{hasUserInfo}}"  class="userinfo-nickname">{{nickName}}</text>
+  <button  wx:else  class="userinfo-nickname"  bindtap="getUserProfile">授权登录</button>
+
+</view>
+
+
+
+<view class="user-navigation">
+  <view class="user-navigation-list">
+    <!-- <navigator url="/pages/orderHistory/orderHistory" hover-class="navigator-hover" >我的订单</navigator> -->
+    <!-- <navigator url="/pages/index/index?title=navigate" hover-class="navigator-hover">客服咨询</navigator>
+    <navigator url="/pages/index/index?title=navigate" hover-class="navigator-hover">卡券中心</navigator> -->
+    <navigator url="/pages/membership/membership" hover-class="navigator-hover" >会员中心</navigator>
+    <navigator url="/pages/admin/dashboard/dashboard" wx:if="{{admin_role!=0}}" open-type="navigate">管理后台</navigator>
+
+    
+  </view>
+</view>
+
+
+
+</view>

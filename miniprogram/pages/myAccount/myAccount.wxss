@@ -1,0 +1,99 @@
+/* miniprogram/pages/account/account.wxss */
+
+.account-page{
+  padding: 0 20rpx;
+}
+.user-profile{
+  background: #11c6dc;
+  display: grid;
+  grid-template-columns: 120rpx auto;
+  align-items: center;
+  padding: 40rpx 20rpx;
+  box-sizing: border-box;
+  width: calc(100% + 40rpx);
+  margin-left: -20rpx;
+}
+
+
+
+.account-page .userinfo-avatar{
+  margin: 0;
+  padding: 0;
+  height: 100rpx;
+  width: 100rpx;
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.user-profile .userinfo-nickname{
+  color: #fff;
+  padding-left: 10rpx;
+}
+
+
+/* order */
+.order-history{
+  margin-top: 20rpx;
+  box-sizing: border-box;
+}
+
+.order-top{
+  border-bottom: 1rpx solid #EAEAEA;
+}
+
+
+.order-history .all-order-link{
+  padding: 8rpx 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+
+.my-order{
+  font-weight: 400;
+  font-size: 28rpx;
+  text-align: left;
+}
+
+.all-order{
+  font-size: 28rpx;
+  text-align: right;
+}
+
+.order-category{
+  display: flex;
+}
+
+
+.order-category navigator{
+  font-weight: 300;
+  flex: 1;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 16rpx 0;
+}
+
+
+
+/* naviagion */
+
+.user-navigation{
+  
+}
+
+.user-navigation-list{
+
+}
+
+
+.user-navigation navigator{
+  border-top: 1rpx solid #EAEAEA;
+  padding: 16rpx 0;
+  font-size: 24rpx;
+}
+.user-navigation navigator:last-child{
+  border-bottom: 1rpx solid #EAEAEA;
+}

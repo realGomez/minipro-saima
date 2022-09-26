@@ -1,0 +1,60 @@
+<!--pages/admin/orderManage/orderManage.wxml-->
+<wxs src="../../../wxs/format.wxs" module="format" />
+<view class="container ordermanage-page">
+
+  <!-- date  -->
+  <view  class="dateItemsContainer">
+    <view class="dateItems">
+      <view class="dateItem {{selectedAllDay?'selected':''}}" bindtap="pickAllDateAction">
+        <view class="week">全部日期</view>
+        <view class="date">-至今-</view> 
+      </view>
+      <view class="dateItem {{ selectedYear==item.pickYear && selectedMonth==item.pickMonth && selectedDay==item.pickDate ?'selected':''}}" wx:for="{{availeblePickedDate}}" wx:key='pickDate' data-pick-year="{{item.pickYear}}" 
+      data-pick-month="{{item.pickMonth}}" data-pick-date="{{item.pickDate}}"  bindtap="pickDateAction">
+        <view class="week">周{{item.weekDay}}</view>
+        <view class="date">{{item.pickMonth}}月{{item.pickDate}}日</view> 
+      </view>
+    </view>
+  </view>
+<!-- date -->
+
+  <view class="order-filter">
+    <view class="filterContainer">
+      <button  type="pick" size="mini" data-status='' class="status {{ selectedStatus=='' ?'selected':''}}"  bindtap="pickStatusAction">
+        <text>全部状态</text>
+      </button>
+      <button  type="pick" size="mini" data-status='pending' class="status {{ selectedStatus=='pending' ?'selected':''}}" bindtap="pickStatusAction">
+        <text>待付款</text>
+      </button>
+      <button  type="pick" size="mini" data-status='processing' class="status {{ selectedStatus=='processing' ?'selected':''}}" bindtap="pickStatusAction">
+        <text>已付款</text>
+      </button>
+      <button  type="pick" size="mini" data-status='complete' class="status {{ selectedStatus=='complete' ?'selected':''}}" bindtap="pickStatusAction">
+        <text>已完成</text>
+      </button>
+      <button  type="pick" size="mini" data-status='refund' class="status {{ selectedStatus=='refund' ?'selected':''}}" bindtap="pickStatusAction">
+        <text>已退款</text>
+      </button>
+    </view>
+  </view>
+
+  <view class="items">
+    <view class="item title-row" >
+      <view>下单时间</view>
+      <view>订单号 </view>
+      <view>昵称</view>
+      <view>状态</view>
+      <view>操作</view>
+    </view>
+    <view class="item" wx:for="{{orderList}}"   wx:key="_id" data-id="{{item._id}}"  >
+      <view>{{item.place_order_time}}</view>
+      <view>{{item.order_number}} </view>
+      <view>{{item.nickName}} </view>
+      <view>{{item.status}} </view>
+      <navigator url="/pages/admin/orderManage/orderDetail/orderDetail?id={{item._id}}" class="next-link" open-type="navigate"><view>详情</view><view class="icon-next-link"></view></navigator>
+      <!-- <button  class="order-detail" type="primary-link" size="mini" ><view>详情</view><view class="icon-primary-link"></view></button> -->
+    </view>
+  </view>
+</view>
+
+

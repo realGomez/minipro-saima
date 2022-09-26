@@ -1,0 +1,30 @@
+function getIndexBack (selectedBusinessHours,businessHour) {
+//  var index = ids.indexOf(id);
+var exist = false;
+var existIndex = -1;
+
+
+ for( var i=0;i<selectedBusinessHours.length;i++){
+    if(selectedBusinessHours[i]['businessHoursId'] == businessHour.businessHoursId && selectedBusinessHours[i]['horseNumber'] == businessHour.horse_number){
+      existIndex = i;
+    }
+ }
+
+  return existIndex;
+}
+function getIndex (selectedBusinessHoursAndHorse,horse_number,businessHoursId) {
+  
+  var existIndex = selectedBusinessHoursAndHorse.indexOf(horse_number +'_'+ businessHoursId);
+  
+    return existIndex;
+  }
+
+function getTimeFormat(value){
+  return value < 10 ? '0' + value:value;
+}
+
+
+module.exports = {
+  getIndex: getIndex,
+  getTimeFormat:getTimeFormat
+}

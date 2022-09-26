@@ -1,0 +1,5 @@
+<!--pages/membership/membership.wxml-->
+<view class="container">
+   <view>会员积分</view>
+   <view>注册会员可随时追踪订单，查看网上订单历史</view>
+</view>

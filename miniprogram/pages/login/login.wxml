@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+
+<view class="container">
+
+<view class="h1">注册会员，</view>
+<view>快速体验骑马乐趣！</view>
+
+<button type="primary" size="default"  bindtap="getUserProfile">微信授权登录</button>
+<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信授权登录</button> -->
+</view>

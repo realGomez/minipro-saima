@@ -29,10 +29,12 @@
           <view class="businessHoursItem" wx:for="{{availebleHorses}}" wx:key='horse_number'>
               <view class="horseName">{{item.name}}</view>
               <!-- <view class="date">{{item.pickMonth}}月{{item.pickdate}}日</view>  -->
+                <!-- {{format.getIndex(selectedBusinessHours,businessHour)==-1?'':'selected'}} -->
+
               <view class="timeIntervalItems">
-                <view wx:for="{{item.businessHours}}" wx:for-item="businessHour"  class="timeIntervalItem {{businessHour.status?'available':'disavailable'}}  {{format.getIndex(selectedBusinessHours,businessHour)==-1?'':'selected'}}"   
-                wx:key='_id'    data-time-interval="{{businessHour.timeInterval}}" 
-                data-index="{{format.getIndex(selectedBusinessHours,businessHour)}}" 
+                <view wx:for="{{item.businessHours}}" wx:for-item="businessHour"  class="timeIntervalItem {{businessHour.status?'available':'disavailable'}}   {{format.getIndex(selectedBusinessHoursAndHorse,businessHour.horse_number,businessHour.businessHoursId)==-1?'':'selected'}} "   
+                wx:key='_id'    data-time-interval="{{businessHour.timeInterval}} "  
+                data-time-interval-label="{{businessHour.timeIntervalLabel}}"
                 data-horse-number="{{businessHour.horse_number}}" data-business-hours-id="{{businessHour.businessHoursId}}" data-status="{{businessHour.status}}" bindtap="pickBusinessHourAction">
                  ￥{{businessHour.price}}
                 </view>
@@ -68,9 +70,9 @@
 
   <!-- checkout -->
 
-  <view class="status-description">
+  <view class="play-order">
    <view class="total"> ￥{{orderTotal}}</view> 
-   <view class="payment"><button class="mini-btn" type="primary" size="mini" >提交订单</button></view>
+   <view class="payment"><button class="mini-btn" type="primary" size="mini" bindtap="placeOrder">提交订单</button></view>
   </view>
   
 </view>

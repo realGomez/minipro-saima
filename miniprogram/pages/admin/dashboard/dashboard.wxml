@@ -1,0 +1,10 @@
+<!--pages/admin/dashboard/dashboard.wxml-->
+<view class="container dashboard-page">
+    <view class="user-navigation">
+        <view class="user-navigation-list">
+          <navigator url="/pages/admin/orderManage/orderManage" open-type="navigate">订单管理</navigator>
+          <navigator url="/pages/admin/horseManage/horseManage" open-type="navigate">马匹管理</navigator>
+          <navigator url="/pages/admin/uersManage/uersManage" open-type="navigate">会员管理</navigator>
+        </view>
+    </view>
+</view>
